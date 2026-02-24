@@ -1,0 +1,83 @@
+openapi: 3.0.0
+info:
+  title: ORDS generated API for TR_ALL.module
+  version: 1.0.0
+servers:
+- url: http://localhost:9090/ords/bk_ords/TRALL
+paths:
+  /TRALL/:
+    get:
+      description: Retrieve records from TR_ALL.module
+      parameters: []
+      responses:
+        "200":
+          description: The queried record.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/inline_response_200"
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - OAuth2: []
+components:
+  schemas:
+    CHAR:
+      type: string
+    JSON: {}
+    NUMBER:
+      type: number
+    VARCHAR2:
+      type: string
+    inline_response_200:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/inline_response_200_items"
+    inline_response_200_items:
+      type: object
+      properties:
+        age:
+          $ref: "#/components/schemas/NUMBER"
+        agence:
+          $ref: "#/components/schemas/VARCHAR2"
+        allocations:
+          $ref: "#/components/schemas/JSON"
+        categbenif:
+          $ref: "#/components/schemas/CHAR"
+        codeidentifiant:
+          $ref: "#/components/schemas/CHAR"
+        date_extract:
+          $ref: "#/components/schemas/VARCHAR2"
+        nationalite:
+          $ref: "#/components/schemas/VARCHAR2"
+        nom:
+          $ref: "#/components/schemas/CHAR"
+        perioddec:
+          $ref: "#/components/schemas/VARCHAR2"
+        prenom:
+          $ref: "#/components/schemas/VARCHAR2"
+        typeidentifiant:
+          $ref: "#/components/schemas/VARCHAR2"
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    BearerAuth:
+      type: http
+      scheme: bearer
+    OAuth2:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: http://localhost:9090/ords/bk_ords/oauth/auth
+          scopes: {}
+        clientCredentials:
+          tokenUrl: http://localhost:9090/ords/bk_ords/oauth/token
+          scopes: {}
+        authorizationCode:
+          authorizationUrl: http://localhost:9090/ords/bk_ords/oauth/auth
+          tokenUrl: http://localhost:9090/ords/bk_ords/oauth/token
+          scopes: {}

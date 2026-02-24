@@ -1,0 +1,118 @@
+openapi: 3.0.0
+info:
+  title: ORDS generated API for TR_RETALL.module
+  version: 1.0.0
+servers:
+  - url: http://localhost:9090/ords/bk_ords/TRRETALL
+paths:
+  /TRRETALL/:
+    get:
+      description: Retrieve records from TR_RETALL.module
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
+        - OAuth2: []
+      responses:
+        '200':
+          description: The queried record.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        age:
+                          $ref: '#/components/schemas/NUMBER'
+                        age1:
+                          $ref: '#/components/schemas/CHAR'
+                        agence:
+                          $ref: '#/components/schemas/VARCHAR2'
+                        cadretro:
+                          $ref: '#/components/schemas/VARCHAR2'
+                        categbenif:
+                          $ref: '#/components/schemas/VARCHAR2'
+                        cli:
+                          $ref: '#/components/schemas/CHAR'
+                        codeidentifiant:
+                          $ref: '#/components/schemas/CHAR'
+                        cvmntretro:
+                          $ref: '#/components/schemas/NUMBER'
+                        datautbctsd:
+                          $ref: '#/components/schemas/DATE'
+                        datdecd:
+                          $ref: '#/components/schemas/DATE'
+                        datdelivalloctouris:
+                          $ref: '#/components/schemas/DATE'
+                        date_extract:
+                          $ref: '#/components/schemas/VARCHAR2'
+                        datretro:
+                          $ref: '#/components/schemas/DATE'
+                        datretvoy:
+                          $ref: '#/components/schemas/DATE'
+                        devmntretro:
+                          $ref: '#/components/schemas/CHAR'
+                        eve:
+                          $ref: '#/components/schemas/CHAR'
+                        mntretrodev:
+                          $ref: '#/components/schemas/NUMBER'
+                        nationalite:
+                          $ref: '#/components/schemas/VARCHAR2'
+                        natop:
+                          $ref: '#/components/schemas/VARCHAR2'
+                        nom:
+                          $ref: '#/components/schemas/CHAR'
+                        numautbctsd:
+                          $ref: '#/components/schemas/VARCHAR2'
+                        numdecd:
+                          $ref: '#/components/schemas/VARCHAR2'
+                        ope:
+                          $ref: '#/components/schemas/CHAR'
+                        perioddec:
+                          $ref: '#/components/schemas/VARCHAR2'
+                        prenom:
+                          $ref: '#/components/schemas/VARCHAR2'
+                        typeidentifiant:
+                          $ref: '#/components/schemas/VARCHAR2'
+      parameters:
+        - name: code_identifiant
+          in: query
+          schema:
+            type: string
+          description: Implicit parameter
+components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    BearerAuth:
+      type: http
+      scheme: bearer
+    OAuth2:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: http://localhost:9090/ords/bk_ords/oauth/auth
+          scopes: {}
+        authorizationCode:
+          authorizationUrl: http://localhost:9090/ords/bk_ords/oauth/auth
+          tokenUrl: http://localhost:9090/ords/bk_ords/oauth/token
+          scopes: {}
+        clientCredentials:
+          tokenUrl: http://localhost:9090/ords/bk_ords/oauth/token
+          scopes: {}
+  schemas:
+    CHAR:
+      type: string
+    DATE:
+      type: string
+      format: date-time
+      pattern: >-
+        ^\d{4}-[01]\d-[0123]\dT[012]\d:[0-5]\d:[0-5]\d(.\d+)?(Z|([-+][012]\d:[0-5]\d))$
+    NUMBER:
+      type: number
+    VARCHAR2:
+      type: string

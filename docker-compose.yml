@@ -1,0 +1,45 @@
+version: '3.8'
+services:
+  oracle-db:
+    image: container-registry.oracle.com/database/free:latest
+    container_name: oracle-free
+    hostname: oracle-free
+    ports:
+      - "1525:1521"
+      - "5500:5500"
+    environment:
+      ORACLE_PWD: Oracle123
+    volumes:
+      - oracle-data:/opt/oracle/oradata
+      - ./scripts/startup:/opt/oracle/scripts/startup
+    networks:
+      - baas-network
+  
+  ords:
+    image: container-registry.oracle.com/database/ords:latest
+    container_name: ords
+    hostname: ords
+    depends_on:
+      - oracle-db
+    ports:
+      - "9090:8080"
+    environment:
+      DBHOST: oracle-free
+      DBPORT: 1521
+      DBSERVICENAME: FREEPDB1
+      ORACLE_PWD: Oracle123
+      ORDS_STANDALONE: "true"
+      ORDS_ADMIN_PASSWORD: Oracle123
+    volumes:
+      - ords_config:/etc/ords/config
+    networks:
+      - baas-network
+
+volumes:
+  oracle-data:
+    driver: local
+  ords_config:
+    driver: local
+networks:
+  baas-network:
+    driver: bridge

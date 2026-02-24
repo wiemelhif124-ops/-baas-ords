@@ -1,0 +1,28 @@
+ table TR_ALL :
+CREATE TABLE TR_ALL (
+  DATE_EXTRACT           VARCHAR2(10 BYTE),
+  PERIODDEC              VARCHAR2(6 BYTE),
+  AGENCE                 VARCHAR2(3 CHAR),
+  TYPEIDENTIFIANT        VARCHAR2(1 BYTE),
+  CODEIDENTIFIANT        CHAR(20 CHAR),
+  NOM                    CHAR(36 CHAR),
+  PRENOM                 VARCHAR2(36 CHAR),
+  CATEGBENIF             CHAR(1 BYTE),
+  AGE                    NUMBER,
+  NATIONALITE            VARCHAR2(40 CHAR),
+  CODPAYSDEST            VARCHAR2(10 BYTE),
+  ECOSALAIRE             VARCHAR2(1 BYTE),
+  MODDELIV               CHAR(1 BYTE),
+  MNTALLOCTOURDEV        NUMBER(19,4),
+  DEVISE                 CHAR(3 CHAR),
+  MNTALLOC               NUMBER(19,4),
+  DATDELIVALLOCTOUR      DATE,
+  NUMAUTBCTSD            CHAR(6 CHAR),
+  DATAUTBCTSD            DATE,
+  NUMAUTBCT              VARCHAR2(16 BYTE),
+  DATEAUTBCT             DATE,
+  CLI1                   CHAR(15 CHAR),
+  AGE1                   CHAR(5 CHAR),
+  OPE                    CHAR(3 CHAR),
+  EVE                    CHAR(6 CHAR)
+);
